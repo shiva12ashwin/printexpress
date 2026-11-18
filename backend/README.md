@@ -4,6 +4,10 @@ This Worker has separate server-only Supabase clients for the shared Shop Databa
 Admin Database. The Shop health endpoint uses only the Shop Database client; the Admin client
 has separate bindings and is not used by that endpoint.
 
+The Worker root (`/`) returns API identification only. It is not the customer-facing Next.js
+website and does not check Supabase. The protected Shop Database diagnostic is at
+`/internal/health/shop-database`.
+
 ## Production-only workflow
 
 Application and database connection testing is performed against the deployed Cloudflare

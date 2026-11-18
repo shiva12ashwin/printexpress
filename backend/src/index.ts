@@ -2,6 +2,19 @@ import { checkShopDatabase, type ShopDatabaseHealthCheck } from "./health";
 
 const HEALTH_PATH = "/internal/health/shop-database";
 
+function rootResponse(): Response {
+  return jsonResponse(
+    {
+      service: "PrintExpress API",
+      status: "online",
+      message: "This is the backend API, not the customer website.",
+      shopDatabaseHealthEndpoint: HEALTH_PATH,
+      databaseChecked: false,
+    },
+    200,
+  );
+}
+
 async function matchesToken(providedToken: string, expectedToken: string): Promise<boolean> {
   const encoder = new TextEncoder();
   const [providedDigest, expectedDigest] = await Promise.all([
@@ -35,6 +48,14 @@ export async function fetchHandler(
   healthCheck: ShopDatabaseHealthCheck = checkShopDatabase,
 ): Promise<Response> {
   const url = new URL(request.url);
+
+  if (url.pathname === "/") {
+    if (request.method !== "GET") {
+      return jsonResponse({ error: { code: "METHOD_NOT_ALLOWED", message: "Method not allowed." } }, 405);
+    }
+
+    return rootResponse();
+  }
 
   if (url.pathname !== HEALTH_PATH) {
     return jsonResponse({ error: { code: "NOT_FOUND", message: "Route not found." } }, 404);

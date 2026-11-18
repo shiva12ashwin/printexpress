@@ -14,6 +14,22 @@ function request(path = "/internal/health/shop-database", init?: RequestInit) {
 }
 
 describe("Shop Database health endpoint", () => {
+  it("explains that the root is the API and does not check the database", async () => {
+    const healthCheck = vi.fn(async () => {});
+
+    const response = await fetchHandler(request("/"), env, healthCheck);
+
+    expect(response.status).toBe(200);
+    expect(await response.json()).toEqual({
+      service: "PrintExpress API",
+      status: "online",
+      message: "This is the backend API, not the customer website.",
+      shopDatabaseHealthEndpoint: "/internal/health/shop-database",
+      databaseChecked: false,
+    });
+    expect(healthCheck).not.toHaveBeenCalled();
+  });
+
   it("requires a health-check bearer token and does not call Supabase", async () => {
     const healthCheck = vi.fn(async () => {});
 
