@@ -1,0 +1,4 @@
+# Optional reference only; production values belong in Cloudflare Worker Secrets.
+SUPABASE_URL=https://your-project-ref.supabase.co
+SUPABASE_SECRET_KEY=replace-with-a-rotated-server-only-secret-key
+HEALTHCHECK_TOKEN=replace-with-a-long-random-bearer-token

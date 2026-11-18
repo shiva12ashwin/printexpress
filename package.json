@@ -1,0 +1,12 @@
+{
+  "name": "printexpress",
+  "private": true,
+  "packageManager": "pnpm@9.12.0",
+  "scripts": {
+    "dev": "pnpm --filter commercial-web dev",
+    "build": "pnpm --filter commercial-web build",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test",
+    "typecheck": "pnpm -r typecheck"
+  }
+}
