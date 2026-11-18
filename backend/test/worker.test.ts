@@ -4,6 +4,8 @@ import { fetchHandler } from "../src";
 const env: Env = {
   SUPABASE_URL: "https://example.supabase.co",
   SUPABASE_SECRET_KEY: "test-secret",
+  ADMIN_SUPABASE_URL: "https://admin.example.supabase.co",
+  ADMIN_SUPABASE_SECRET_KEY: "admin-test-secret",
   HEALTHCHECK_TOKEN: "test-health-token",
 };
 

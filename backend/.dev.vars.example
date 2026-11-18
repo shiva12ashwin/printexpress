@@ -2,3 +2,5 @@
 SUPABASE_URL=https://your-project-ref.supabase.co
 SUPABASE_SECRET_KEY=replace-with-a-rotated-server-only-secret-key
 HEALTHCHECK_TOKEN=replace-with-a-long-random-bearer-token
+ADMIN_SUPABASE_URL=https://your-admin-project-ref.supabase.co
+ADMIN_SUPABASE_SECRET_KEY=replace-with-a-rotated-admin-server-only-secret-key
